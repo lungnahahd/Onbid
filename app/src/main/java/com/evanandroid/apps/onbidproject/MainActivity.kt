@@ -11,7 +11,9 @@ import java.net.URL
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        StrictMode.enableDefaults()
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_main)
         StrictMode.enableDefaults()
         var status : TextView = findViewById(R.id.result)
@@ -107,6 +109,7 @@ class MainActivity : AppCompatActivity() {
             }
         }catch (e : Exception){
             status.setText("에러가 발생했습니다.")
+            e.printStackTrace()
         }
     }
 }
