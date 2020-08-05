@@ -10,6 +10,7 @@ import java.lang.Exception
 import java.net.URL
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         StrictMode.enableDefaults()
         super.onCreate(savedInstanceState)

@@ -14,9 +14,11 @@
         android:textSize="35sp"
         android:textStyle="bold"
         android:gravity="center"/>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <TextView
             android:id="@+id/result"
             android:layout_width="match_parent"

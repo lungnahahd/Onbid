@@ -56,17 +56,7 @@ class SearchData : AppCompatActivity() {
             -> thread.start()
 
 
-            /*Thread(Runnable{
-                fun run(){
-                    data =getXmlData()
 
-                    runOnUiThread(Runnable {
-                        run(){
-                            text.setText(data)
-                        }
-                    })
-                }
-            }).start()*/
         }
     }
 

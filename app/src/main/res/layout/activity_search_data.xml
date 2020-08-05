@@ -35,6 +35,12 @@
             android:textSize="12sp"
             android:onClick="mOnClick"/>
     </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="italic"
+        android:text="공매 번호를 잘 확인해 주세요!"
+        android:textColor="#EE0000"/>
 
     <ScrollView
         android:layout_width="match_parent"
