@@ -4,27 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RecycleData"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".RecycleData">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="공매물건 조회 서비스"
         android:gravity="center"
+        android:text="공매물건 조회 서비스"
         android:textSize="40sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
         android:weightSum="10">
+
         <EditText
             android:id="@+id/edit"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="4"
-            android:hint="공매명"/>
+            android:hint="공매명" />
+
         <Button
             android:id="@+id/button"
             android:layout_width="match_parent"
@@ -32,21 +35,47 @@
             android:layout_weight="7"
             android:text="조회하기"
 
-            android:textSize="12sp"/>
+            android:textSize="12sp" />
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:weightSum="3">
+
+        <Button
+            android:id="@+id/backBut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="이전으로"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/firstBut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="처음으로"
+            android:layout_weight="1"
+
+        <Button
+            android:id="@+id/goBut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="다음으로"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textStyle="italic"
         android:text="공매 번호를 잘 확인해 주세요!"
-        android:textColor="#EE0000"/>
+        android:textColor="#EE0000"
+        android:textStyle="italic" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="vertical"/>
-
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical" />
 
 
 
