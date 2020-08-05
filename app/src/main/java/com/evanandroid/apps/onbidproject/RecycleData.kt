@@ -3,8 +3,11 @@ package com.evanandroid.apps.onbidproject
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.StrictMode
+import android.util.Xml
+import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_recycle_data.*
 import org.w3c.dom.Text
@@ -12,28 +15,72 @@ import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParserFactory
 import java.lang.Exception
 import java.net.URL
+import java.net.URLEncoder
 
 class RecycleData : AppCompatActivity() {
+
+
+    /*inner class WorkerRunnable : Runnable{
+        //
+        override fun run()  {
+            StrictMode.enableDefaults()
+            var data = searchData()
+
+
+           runOnUiThread(){
+               var adapter = RecyclerAdapter()
+               adapter.listData = data
+               recyclerView.adapter = adapter
+            }
+        }
+
+    }*/
 
     override fun onCreate(savedInstanceState: Bundle?) {
         StrictMode.enableDefaults()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recycle_data)
-       /* var textnum : TextView = findViewById(R.id.num)
-        var textname : TextView = findViewById(R.id.name)*/
-        val data:MutableList<Data> = loadData()
-        var adapter = RecyclerAdapter()
-        adapter.listData = data
+
+        //val data:MutableList<Data> = loadData() // 전체데이터를 받는 경우에 사용하는 코드
+
+        button.setOnClickListener {
+            /*var thread = Thread(WorkerRunnable())
+            thread.start()*/
+            searchData()
+
+
+            var adapter = RecyclerAdapter()
+            val data : MutableList<Data> = searchData()
+            adapter.listData = data
+            recyclerView.adapter = adapter
+            recyclerView.layoutManager = LinearLayoutManager(this)
+
+
+        }
+        //recyclerView.layoutManager = LinearLayoutManager(this)
+
+        /*var adapter = RecyclerAdapter()
+        adapter.listData = mOnClick()
+        //adapter.listData =data
         recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.layoutManager = LinearLayoutManager(this)*/
+
+
     }
 
+    /*fun mOnClick(v: View) {
+        var thread = Thread(WorkerRunnable())
+        when(v.id){
+            R.id.button
+            -> thread.start()
+        }
+    }*/
+
+    // 전체 데이터를 받는 코드
     fun loadData() : MutableList<Data>{
         val ldata : MutableList<Data> = mutableListOf()
         var b_PLNM_NM = false
         var b_PBCT_NO = false
-        /*var statusnum : TextView = findViewById(R.id.num)
-        var statusname : TextView = findViewById(R.id.name)*/
 
         var plnm_nm : String? = null
         var pbct_no : String? = null
@@ -77,10 +124,64 @@ class RecycleData : AppCompatActivity() {
                 parserEvent = parser.next()
             }
         }catch (e : Exception){
-            /*statusnum.setText("에러가 발생했습니다.")
-            statusname.setText("에러가 발생했습니다.")*/
             e.printStackTrace()
         }
+        return ldata
+    }
+
+    fun searchData() : MutableList<Data>{
+        val ldata : MutableList<Data> = mutableListOf()
+
+        var str: String = edit.text.toString()
+        var location: String = URLEncoder.encode(str,"UTF-8")
+        /*var plnm_nm  = "초기값"
+        var pbct_no  = "초기값"*/
+        val queryUrl =
+            "http://openapi.onbid.co.kr/openapi/services/UtlinsttPblsalThingInquireSvc/getPublicSaleAnnouncement?PLNM_NM="
+        val queryUrl2 =
+            "&serviceKey=fZrdoxTt5AoPpbAJScuxo3IeZBzRVqrhnG%2FpP7J6uZfC05FIbniTRaZicjkRyJr8Tzs0RdKmFnQgRFUNPUyXDA%3D%3D"
+        val finalUrl = queryUrl + location + queryUrl2
+        try {
+            var plnm_nm : String? = null
+            var pbct_no : String? = null
+            val url = URL(finalUrl)
+            val factory = XmlPullParserFactory.newInstance()
+            val parser = factory.newPullParser()
+            parser.setInput(url.openStream(),"UTF-8")
+            var eventType : Int = parser.getEventType()
+
+
+            var tag: String
+
+            while (eventType != XmlPullParser.END_DOCUMENT){
+                when(eventType){
+
+                    XmlPullParser.START_TAG
+                    -> {
+                        tag = parser.name
+                        if(tag == "item"){
+                        }else if (tag == "PBCT_NO"){
+                            parser.next()
+                            pbct_no = parser.text
+                        }else if(tag == "PLNM_NM"){
+                            parser.next()
+                            plnm_nm = parser.text
+                        }
+                    }
+
+                    XmlPullParser.END_TAG
+                    -> if(parser.name == "item"){
+                        var data = Data(pbct_no, plnm_nm)
+                        ldata.add(data)
+                    }
+
+                }
+                eventType = parser.next()
+            }
+        }catch (e : Exception){
+            e.printStackTrace()
+        }
+        //Toast.makeText(this, "검색이 완료되었습니다.", Toast.LENGTH_SHORT).show()
         return ldata
     }
 
