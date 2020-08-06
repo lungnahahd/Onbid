@@ -142,9 +142,9 @@ class RecycleData : AppCompatActivity() {
         var location: String = URLEncoder.encode(str, "UTF-8")
 
         val queryUrl =
-            "http://openapi.onbid.co.kr/openapi/services/GovernmentPropertyInfoSvc/getGovernmentProperty?CLTR_NM=${location}&pageNo="
+            "http://openapi.onbid.co.kr/openapi/services/UtlinsttPblsalThingInquireSvc/getPublicSaleAnnouncement?PLNM_NM=${location}&pageNo="
         val queryUrl2 =
-            "&serviceKey=fZrdoxTt5AoPpbAJScuxo3IeZBzRVqrhnG%2FpP7J6uZfC05FIbniTRaZicjkRyJr8Tzs0RdKmFnQgRFUNPUyXDA%3D%3D"
+            "&serviceKey=gC5PyKIxJcc0H6J648DKQVzSOvAA5dXIdFD%2F9JJ7jyxIb8GkmtQ%2FODKdRES10CQDHUmx%2FG7lH0%2F1HEPqSWi38w%3D%3D"
        // var count = 1
 
         //val finalUrl = queryUrl + location + queryUrl
@@ -171,10 +171,10 @@ class RecycleData : AppCompatActivity() {
                     -> {
                         tag = parser.name
                         if (tag == "item") {
-                        } else if (tag == "CLTR_NO") {
+                        } else if (tag == "PBCT_NO") {
                             parser.next()
                             pbct_no = parser.text
-                        } else if (tag == "CLTR_NM") {
+                        } else if (tag == "PLNM_NM") {
                             parser.next()
                             plnm_nm = parser.text
                         }
