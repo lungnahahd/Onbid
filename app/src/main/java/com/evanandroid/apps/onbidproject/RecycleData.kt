@@ -20,7 +20,6 @@ import java.net.URLEncoder
 
 class RecycleData : AppCompatActivity() {
     var count = 1
-
     override fun onCreate(savedInstanceState: Bundle?) {
         StrictMode.enableDefaults()
         super.onCreate(savedInstanceState)
