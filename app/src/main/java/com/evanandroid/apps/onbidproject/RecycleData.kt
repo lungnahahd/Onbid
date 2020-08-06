@@ -1,5 +1,6 @@
 package com.evanandroid.apps.onbidproject
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.StrictMode
@@ -42,12 +43,16 @@ class RecycleData : AppCompatActivity() {
         }
 
         backBut.setOnClickListener {
+
+
             count = count - 1
             var adapter = RecyclerAdapter()
             val data: MutableList<Data> = searchData()
             adapter.listData = data
             recyclerView.adapter = adapter
             recyclerView.layoutManager = LinearLayoutManager(this)
+
+
 
         }
 
@@ -137,7 +142,7 @@ class RecycleData : AppCompatActivity() {
         var location: String = URLEncoder.encode(str, "UTF-8")
 
         val queryUrl =
-            "http://openapi.onbid.co.kr/openapi/services/UtlinsttPblsalThingInquireSvc/getPublicSaleAnnouncement?PLNM_NM=${location}&pageNo="
+            "http://openapi.onbid.co.kr/openapi/services/GovernmentPropertyInfoSvc/getGovernmentProperty?CLTR_NM=${location}&pageNo="
         val queryUrl2 =
             "&serviceKey=fZrdoxTt5AoPpbAJScuxo3IeZBzRVqrhnG%2FpP7J6uZfC05FIbniTRaZicjkRyJr8Tzs0RdKmFnQgRFUNPUyXDA%3D%3D"
        // var count = 1
@@ -166,10 +171,10 @@ class RecycleData : AppCompatActivity() {
                     -> {
                         tag = parser.name
                         if (tag == "item") {
-                        } else if (tag == "PBCT_NO") {
+                        } else if (tag == "CLTR_NO") {
                             parser.next()
                             pbct_no = parser.text
-                        } else if (tag == "PLNM_NM") {
+                        } else if (tag == "CLTR_NM") {
                             parser.next()
                             plnm_nm = parser.text
                         }
@@ -192,5 +197,10 @@ class RecycleData : AppCompatActivity() {
         //Toast.makeText(this, "검색이 완료되었습니다.", Toast.LENGTH_SHORT).show()
         return ldata
     }
+
+
+   /* fun change(){
+        startActivity(Intent(this,Description::class.java))
+    }*/
 
 }

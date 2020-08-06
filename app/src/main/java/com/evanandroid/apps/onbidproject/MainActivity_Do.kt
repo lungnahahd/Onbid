@@ -9,13 +9,13 @@ import org.xmlpull.v1.XmlPullParserFactory
 import java.lang.Exception
 import java.net.URL
 
-class MainActivity : AppCompatActivity() {
+class MainActivity_Do : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         StrictMode.enableDefaults()
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_main_do)
         StrictMode.enableDefaults()
         var status : TextView = findViewById(R.id.result)
 
