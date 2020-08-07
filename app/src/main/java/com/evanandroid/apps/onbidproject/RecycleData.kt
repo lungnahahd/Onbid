@@ -80,6 +80,7 @@ class RecycleData : AppCompatActivity() {
     }
 
 
+
     // 전체 데이터를 받는 코드
     fun loadData(): MutableList<Data> {
         val ldata: MutableList<Data> = mutableListOf()
