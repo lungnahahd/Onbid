@@ -59,10 +59,9 @@ class Holder(itemView: View) : RecyclerView.ViewHolder(itemView){
     fun setData(data : Data){
         itemView.name.text = "${data.name}"
         itemView.num.text = "${data.num}"
-
-
-
-
+        itemView.use.text = "${data.use}"
+        itemView.startDay.text = "${data.begin}"
+        itemView.endDay.text = "${data.end}"
     }
 
 

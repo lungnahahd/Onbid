@@ -20,6 +20,8 @@ import java.net.URLEncoder
 
 class RecycleData : AppCompatActivity() {
     var count = 1
+    var btotal = false
+    var endpage = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         StrictMode.enableDefaults()
         super.onCreate(savedInstanceState)
@@ -31,7 +33,7 @@ class RecycleData : AppCompatActivity() {
 
             searchData()
 
-
+            btotal = true
             var adapter = RecyclerAdapter()
             val data: MutableList<Data> = searchData()
             adapter.listData = data
@@ -44,13 +46,16 @@ class RecycleData : AppCompatActivity() {
         backBut.setOnClickListener {
 
 
-            count = count - 1
-            var adapter = RecyclerAdapter()
-            val data: MutableList<Data> = searchData()
-            adapter.listData = data
-            recyclerView.adapter = adapter
-            recyclerView.layoutManager = LinearLayoutManager(this)
-
+            if (count == 1) {
+                Toast.makeText(this, "처음 페이지 입니다.", Toast.LENGTH_SHORT).show()
+            } else {
+                count = count - 1
+                var adapter = RecyclerAdapter()
+                val data: MutableList<Data> = searchData()
+                adapter.listData = data
+                recyclerView.adapter = adapter
+                recyclerView.layoutManager = LinearLayoutManager(this)
+            }
 
 
         }
@@ -68,21 +73,26 @@ class RecycleData : AppCompatActivity() {
 
 
         goBut.setOnClickListener {
-            count = count + 1
-            var adapter = RecyclerAdapter()
-            val data: MutableList<Data> = searchData()
-            adapter.listData = data
-            recyclerView.adapter = adapter
-            recyclerView.layoutManager = LinearLayoutManager(this)
+            if (count == endpage) {
+                Toast.makeText(this, "마지막 페이지 입니다.", Toast.LENGTH_SHORT).show()
+            } else {
+
+                count = count + 1
+                var adapter = RecyclerAdapter()
+                val data: MutableList<Data> = searchData()
+                adapter.listData = data
+                recyclerView.adapter = adapter
+                recyclerView.layoutManager = LinearLayoutManager(this)
+            }
+
         }
 
 
     }
 
 
-
     // 전체 데이터를 받는 코드
-    fun loadData(): MutableList<Data> {
+    /*fun loadData(): MutableList<Data> {
         val ldata: MutableList<Data> = mutableListOf()
         var b_PLNM_NM = false
         var b_PBCT_NO = false
@@ -133,7 +143,7 @@ class RecycleData : AppCompatActivity() {
             e.printStackTrace()
         }
         return ldata
-    }
+    }*/
 
     fun searchData(): MutableList<Data> {
         val ldata: MutableList<Data> = mutableListOf()
@@ -145,7 +155,7 @@ class RecycleData : AppCompatActivity() {
             "http://openapi.onbid.co.kr/openapi/services/UtlinsttPblsalThingInquireSvc/getPublicSaleAnnouncement?PLNM_NM=${location}&pageNo="
         val queryUrl2 =
             "&serviceKey=gC5PyKIxJcc0H6J648DKQVzSOvAA5dXIdFD%2F9JJ7jyxIb8GkmtQ%2FODKdRES10CQDHUmx%2FG7lH0%2F1HEPqSWi38w%3D%3D"
-       // var count = 1
+        // var count = 1
 
         //val finalUrl = queryUrl + location + queryUrl
 
@@ -154,6 +164,9 @@ class RecycleData : AppCompatActivity() {
 
             var plnm_nm: String? = null
             var pbct_no: String? = null
+            var ctgr_full: String? = null
+            var pbct_begn: String? = null
+            var pbct_cls: String? = null
             var url = URL(queryUrl + count + queryUrl2)
             val factory = XmlPullParserFactory.newInstance()
             val parser = factory.newPullParser()
@@ -177,12 +190,33 @@ class RecycleData : AppCompatActivity() {
                         } else if (tag == "PLNM_NM") {
                             parser.next()
                             plnm_nm = parser.text
+                        } else if (tag == "CTGR_FULL_NM") {
+                            parser.next()
+                            ctgr_full = parser.text
+                        } else if (tag == "PBCT_BEGN_DTM") {
+                            parser.next()
+                            pbct_begn = parser.text
+                        } else if (tag == "PBCT_CLS_DTM") {
+                            parser.next()
+                            pbct_cls = parser.text
+                        } else if (tag == "totalCount") {
+                            if (btotal) {
+                                parser.next()
+                                val finalnum = parser.text.toInt()
+                                if (finalnum % 10 == 0) {
+                                    endpage = finalnum / 10
+                                } else {
+                                    endpage = finalnum / 10 + 1
+                                }
+                                btotal = false
+
+                            }
                         }
                     }
 
                     XmlPullParser.END_TAG
                     -> if (parser.name == "item") {
-                        var data = Data(pbct_no, plnm_nm)
+                        var data = Data(pbct_no, plnm_nm, ctgr_full, pbct_begn, pbct_cls)
                         ldata.add(data)
                     }
 
@@ -199,8 +233,8 @@ class RecycleData : AppCompatActivity() {
     }
 
 
-   /* fun change(){
-        startActivity(Intent(this,Description::class.java))
-    }*/
+    /* fun change(){
+         startActivity(Intent(this,Description::class.java))
+     }*/
 
 }
