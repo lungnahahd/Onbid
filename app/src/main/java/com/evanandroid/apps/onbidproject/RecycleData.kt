@@ -27,19 +27,23 @@ class RecycleData : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recycle_data)
 
+
+
         //val data:MutableList<Data> = loadData() // 전체데이터를 받는 경우에 사용하는 코드
 
         button.setOnClickListener {
-
             searchData()
-
             btotal = true
-            var adapter = RecyclerAdapter()
-            val data: MutableList<Data> = searchData()
-            adapter.listData = data
-            recyclerView.adapter = adapter
-            recyclerView.layoutManager = LinearLayoutManager(this)
+            if (endpage <0) {
+                Toast.makeText(this, "검색 결과가 존재하지 않습니다.", Toast.LENGTH_SHORT).show()
+            } else {
 
+                var adapter = RecyclerAdapter()
+                val data: MutableList<Data> = searchData()
+                adapter.listData = data
+                recyclerView.adapter = adapter
+                recyclerView.layoutManager = LinearLayoutManager(this)
+            }
 
         }
 
@@ -155,9 +159,6 @@ class RecycleData : AppCompatActivity() {
             "http://openapi.onbid.co.kr/openapi/services/UtlinsttPblsalThingInquireSvc/getPublicSaleAnnouncement?PLNM_NM=${location}&pageNo="
         val queryUrl2 =
             "&serviceKey=gC5PyKIxJcc0H6J648DKQVzSOvAA5dXIdFD%2F9JJ7jyxIb8GkmtQ%2FODKdRES10CQDHUmx%2FG7lH0%2F1HEPqSWi38w%3D%3D"
-        // var count = 1
-
-        //val finalUrl = queryUrl + location + queryUrl
 
 
         try {
@@ -183,6 +184,13 @@ class RecycleData : AppCompatActivity() {
                     XmlPullParser.START_TAG
                     -> {
                         tag = parser.name
+                        /*if(tag == "items"){
+                            parser.next()
+                            if(parser.text == null){
+                                endpage = -1
+
+                            }
+                        }*/
                         if (tag == "item") {
                         } else if (tag == "PBCT_NO") {
                             parser.next()
@@ -203,7 +211,9 @@ class RecycleData : AppCompatActivity() {
                             if (btotal) {
                                 parser.next()
                                 val finalnum = parser.text.toInt()
-                                if (finalnum % 10 == 0) {
+                                if (finalnum == 0) {
+                                    endpage = -1
+                                } else if (finalnum % 10 == 0) {
                                     endpage = finalnum / 10
                                 } else {
                                     endpage = finalnum / 10 + 1
@@ -228,13 +238,8 @@ class RecycleData : AppCompatActivity() {
         } catch (e: Exception) {
             e.printStackTrace()
         }
-        //Toast.makeText(this, "검색이 완료되었습니다.", Toast.LENGTH_SHORT).show()
         return ldata
     }
 
-
-    /* fun change(){
-         startActivity(Intent(this,Description::class.java))
-     }*/
 
 }

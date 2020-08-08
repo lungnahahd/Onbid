@@ -35,8 +35,6 @@ class RecyclerAdapter : RecyclerView.Adapter<Holder>() {
     override fun onBindViewHolder(holder: Holder, position: Int) {
         val data = listData.get(position)
         holder.setData(data)
-
-
     }
 }
 
@@ -50,8 +48,6 @@ class Holder(itemView: View) : RecyclerView.ViewHolder(itemView){
             intent.putExtra("name",itemView.name.text)
             intent.putExtra("num",itemView.num.text)
             context.startActivity(intent)
-
-            //context.startActivity(Intent(context,Description::class.java))
         }
     }
 
