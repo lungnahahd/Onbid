@@ -45,8 +45,12 @@ class Holder(itemView: View) : RecyclerView.ViewHolder(itemView){
             Toast.makeText(itemView?.context, "상세정보로 이동합니다.",Toast.LENGTH_SHORT).show()
             val context : Context = itemView.getContext()
             val intent = Intent(context,Description::class.java)
-            intent.putExtra("name",itemView.name.text)
-            intent.putExtra("num",itemView.num.text)
+            intent.putExtra("name",itemView.num.text)
+            intent.putExtra("num",itemView.name.text)
+            intent.putExtra("start",itemView.startDay.text)
+            intent.putExtra("end",itemView.endDay.text)
+            intent.putExtra("use",itemView.use.text)
+
             context.startActivity(intent)
         }
     }
