@@ -1,9 +1,11 @@
 package com.evanandroid.apps.onbidproject
 
+import android.content.Context
 import android.content.Intent
+import android.net.IpSecManager
+import android.net.TrafficStats
+import android.os.*
 import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.os.StrictMode
 import android.util.Xml
 import android.view.View
 import android.widget.LinearLayout
@@ -17,78 +19,79 @@ import org.xmlpull.v1.XmlPullParserFactory
 import java.lang.Exception
 import java.net.URL
 import java.net.URLEncoder
+import kotlin.concurrent.thread
 
 class RecycleData : AppCompatActivity() {
     var count = 1
     var btotal = false
     var endpage = 0
+    lateinit var fdata : MutableList<Data>
+
+
+    inner class WorkerRunnable : Runnable{
+        override fun run() {
+            TrafficStats.setThreadStatsTag(Thread.currentThread().id.toInt())
+            fdata = searchData()
+            runOnUiThread(){
+                btotal = true
+                if (endpage <0) {
+                    Toast.makeText(this@RecycleData, "검색 결과가 존재하지 않습니다.", Toast.LENGTH_SHORT).show()
+                } else {
+                    var adapter = RecyclerAdapter()
+                    var data: MutableList<Data> = fdata
+                    adapter.listData = data
+                    recyclerView.adapter = adapter
+                    recyclerView.layoutManager = LinearLayoutManager(this@RecycleData)
+                }
+               backBut.setOnClickListener{
+                   if (count == 1) {
+                       Toast.makeText(this@RecycleData, "처음 페이지 입니다.", Toast.LENGTH_SHORT).show()
+                   } else {
+                       count -= 1
+                       var adapter = RecyclerAdapter()
+                       val data: MutableList<Data> = searchData()
+                       adapter.listData = data
+                       recyclerView.adapter = adapter
+                       recyclerView.layoutManager = LinearLayoutManager(this@RecycleData)
+                   }
+               }
+                firstBut.setOnClickListener {
+                    count = 1
+                    var adapter = RecyclerAdapter()
+                    val data: MutableList<Data> = searchData()
+                    adapter.listData = data
+                    recyclerView.adapter = adapter
+                    recyclerView.layoutManager = LinearLayoutManager(this@RecycleData)
+                }
+                goBut.setOnClickListener {
+                    if (count == endpage) {
+                        Toast.makeText(this@RecycleData, "마지막 페이지 입니다.", Toast.LENGTH_SHORT).show()
+                    } else {
+
+                        count += 1
+                        var adapter = RecyclerAdapter()
+                        val data: MutableList<Data> = searchData()
+                        adapter.listData = data
+                        recyclerView.adapter = adapter
+                        recyclerView.layoutManager = LinearLayoutManager(this@RecycleData)
+                    }
+                }
+            }
+
+        }
+    }
+
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         StrictMode.enableDefaults()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recycle_data)
-
-
-
         //val data:MutableList<Data> = loadData() // 전체데이터를 받는 경우에 사용하는 코드
-
         button.setOnClickListener {
-            searchData()
-            btotal = true
-            if (endpage <0) {
-                Toast.makeText(this, "검색 결과가 존재하지 않습니다.", Toast.LENGTH_SHORT).show()
-            } else {
-
-                var adapter = RecyclerAdapter()
-                val data: MutableList<Data> = searchData()
-                adapter.listData = data
-                recyclerView.adapter = adapter
-                recyclerView.layoutManager = LinearLayoutManager(this)
-            }
-
-        }
-
-        backBut.setOnClickListener {
-
-
-            if (count == 1) {
-                Toast.makeText(this, "처음 페이지 입니다.", Toast.LENGTH_SHORT).show()
-            } else {
-                count = count - 1
-                var adapter = RecyclerAdapter()
-                val data: MutableList<Data> = searchData()
-                adapter.listData = data
-                recyclerView.adapter = adapter
-                recyclerView.layoutManager = LinearLayoutManager(this)
-            }
-
-
-        }
-
-        firstBut.setOnClickListener {
-            count = 1
-            var adapter = RecyclerAdapter()
-            val data: MutableList<Data> = searchData()
-            adapter.listData = data
-            recyclerView.adapter = adapter
-            recyclerView.layoutManager = LinearLayoutManager(this)
-
-        }
-
-
-
-        goBut.setOnClickListener {
-            if (count == endpage) {
-                Toast.makeText(this, "마지막 페이지 입니다.", Toast.LENGTH_SHORT).show()
-            } else {
-
-                count = count + 1
-                var adapter = RecyclerAdapter()
-                val data: MutableList<Data> = searchData()
-                adapter.listData = data
-                recyclerView.adapter = adapter
-                recyclerView.layoutManager = LinearLayoutManager(this)
-            }
-
+            var thread = Thread(WorkerRunnable())
+            thread.start()
         }
 
 
