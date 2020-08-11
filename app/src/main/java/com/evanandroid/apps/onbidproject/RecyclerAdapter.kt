@@ -39,6 +39,16 @@ class RecyclerAdapter : RecyclerView.Adapter<Holder>() {
 }
 
 class Holder(itemView: View) : RecyclerView.ViewHolder(itemView){
+    var open_do : String? = null
+    var give_do : String? = null
+    var num2_do : String? = null
+    var kind_do : String? = null
+    var buystate_do : String? = null
+    var seller_do : String? = null
+    var buymethod_do : String? = null
+    var costdif_do : String? = null
+    var soldmethod_do : String? = null
+    var different_do : String? = null
 
     init {
         itemView.setOnClickListener {
@@ -50,6 +60,16 @@ class Holder(itemView: View) : RecyclerView.ViewHolder(itemView){
             intent.putExtra("start",itemView.startDay.text)
             intent.putExtra("end",itemView.endDay.text)
             intent.putExtra("use",itemView.use.text)
+            intent.putExtra("OpenD",open_do)
+            intent.putExtra("GiveD",give_do)
+            intent.putExtra("Num2",num2_do)
+            intent.putExtra("Kind", kind_do)
+            intent.putExtra("BuyState",buystate_do)
+            intent.putExtra("Seller",seller_do)
+            intent.putExtra("BuyMethod", buymethod_do)
+            intent.putExtra("CostDif", costdif_do)
+            intent.putExtra("SoldMethod", soldmethod_do)
+            intent.putExtra("Different", different_do)
 
             context.startActivity(intent)
         }
@@ -62,6 +82,16 @@ class Holder(itemView: View) : RecyclerView.ViewHolder(itemView){
         itemView.use.text = "${data.use}"
         itemView.startDay.text = "${data.begin}"
         itemView.endDay.text = "${data.end}"
+        open_do = "${data.open_do}"
+        give_do = "${data.give_do}"
+        num2_do = "${data.numT2}"
+        kind_do = "${data.kind}"
+        buystate_do = "${data.buyState}"
+        seller_do = "${data.seller}"
+        buymethod_do = "${data.buyMethod}"
+        costdif_do = "${data.costDif}"
+        soldmethod_do = "${data.soldMethod}"
+        different_do = "${data.differnt}"
     }
 
 

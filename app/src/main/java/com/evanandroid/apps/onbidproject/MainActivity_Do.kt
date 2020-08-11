@@ -26,7 +26,6 @@ class MainActivity_Do : AppCompatActivity() {
         var b_DPSL_MTD_NM = false
         var b_PRPT_DVSN_NM = false
         var b_CTGR_FULL_NM = false
-
         var plnm_nm : String? = null
         var org_nm :String? = null
         var plnm_dt :String? = null

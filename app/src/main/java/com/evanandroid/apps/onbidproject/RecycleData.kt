@@ -12,6 +12,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.activity_description.*
 import kotlinx.android.synthetic.main.activity_recycle_data.*
 import org.w3c.dom.Text
 import org.xmlpull.v1.XmlPullParser
@@ -165,7 +166,16 @@ class RecycleData : AppCompatActivity() {
 
 
         try {
-
+            var plnm_no : String? = null
+            var plnm_kind_nm : String? = null
+            var bid_dvsn_nm : String? = null
+            var org_plnm_no : String? = null
+            var bid_mtd_nm : String? = null
+            var tot_amt_unpc_dvsn_nm : String? = null
+            var dpsl_mtd_nm : String? = null
+            var prpt_dvsn_nm : String? = null
+            var pbct_exct_dtm : String? = null
+            var plnm_dt : String? = null
             var plnm_nm: String? = null
             var pbct_no: String? = null
             var ctgr_full: String? = null
@@ -210,7 +220,39 @@ class RecycleData : AppCompatActivity() {
                         } else if (tag == "PBCT_CLS_DTM") {
                             parser.next()
                             pbct_cls = parser.text
-                        } else if (tag == "totalCount") {
+                        } else if(tag == "PBCT_EXCT_DTM") {
+                            parser.next()
+                            pbct_exct_dtm = parser.text
+                        } else if(tag == "PLNM_DT") {
+                            parser.next()
+                            plnm_dt = parser.text
+                        }
+                        else if(tag == "PLNM_NO") {
+                            parser.next()
+                            plnm_no = parser.text
+                        } else if(tag == "PLNM_KIND_NM") {
+                            parser.next()
+                            plnm_kind_nm = parser.text
+                        } else if(tag == "BID_DVSN_NM") {
+                            parser.next()
+                            bid_dvsn_nm = parser.text
+                        } else if(tag == "ORG_NM") {
+                            parser.next()
+                            org_plnm_no = parser.text
+                        } else if(tag == "BID_MTD_NM") {
+                            parser.next()
+                            bid_mtd_nm = parser.text
+                        } else if(tag == "TOT_AMT_UNPC_DVSN_NM") {
+                            parser.next()
+                            tot_amt_unpc_dvsn_nm = parser.text
+                        } else if(tag == "DPSL_MTD_NM") {
+                            parser.next()
+                            dpsl_mtd_nm = parser.text
+                        } else if(tag == "PRPT_DVSN_NM") {
+                            parser.next()
+                            prpt_dvsn_nm = parser.text
+                        }
+                        else if (tag == "totalCount") {
                             if (btotal) {
                                 parser.next()
                                 val finalnum = parser.text.toInt()
@@ -229,7 +271,7 @@ class RecycleData : AppCompatActivity() {
 
                     XmlPullParser.END_TAG
                     -> if (parser.name == "item") {
-                        var data = Data(pbct_no, plnm_nm, ctgr_full, pbct_begn, pbct_cls)
+                        var data = Data(pbct_no, plnm_nm, ctgr_full, pbct_begn, pbct_cls, pbct_exct_dtm, plnm_dt, plnm_no, plnm_kind_nm, bid_dvsn_nm, org_plnm_no, bid_mtd_nm, tot_amt_unpc_dvsn_nm, dpsl_mtd_nm,prpt_dvsn_nm)
                         ldata.add(data)
                     }
 

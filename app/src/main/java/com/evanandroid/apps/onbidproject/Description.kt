@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
+import org.w3c.dom.Text
 
 class Description : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,6 +16,18 @@ class Description : AppCompatActivity() {
         var start : TextView = findViewById(R.id.startD_do)
         var end : TextView = findViewById(R.id.endD_do)
         var use : TextView = findViewById(R.id.useDes_do)
+        var openD : TextView = findViewById(R.id.openD_do)
+        var giveD : TextView = findViewById(R.id.giveD_do)
+        var num2 : TextView = findViewById(R.id.numT2_do)
+        var kind : TextView = findViewById(R.id.kind_do)
+        var buystate : TextView = findViewById(R.id.buyState_do)
+        var seller : TextView = findViewById(R.id.seller)
+        var buymethod : TextView = findViewById(R.id.buyMethod_do)
+        var costdif : TextView = findViewById(R.id.costDif_do)
+        var soldmethod : TextView = findViewById(R.id.soldMethod_do)
+        var different : TextView = findViewById(R.id.different_do)
+
+
         val intent : Intent = getIntent()
 
         title.setText(intent.getStringExtra("num"))
@@ -22,5 +35,15 @@ class Description : AppCompatActivity() {
         start.setText(intent.getStringExtra("start"))
         end.setText(intent.getStringExtra("end"))
         use.setText(intent.getStringExtra("use"))
+        openD.setText(intent.getStringExtra("OpenD"))
+        giveD.setText(intent.getStringExtra("GiveD"))
+        num2.setText(intent.getStringExtra("Num2"))
+        kind.setText(intent.getStringExtra("Kind"))
+        buystate.setText(intent.getStringExtra("BuyState"))
+        seller.setText(intent.getStringExtra("Seller"))
+        buymethod.setText(intent.getStringExtra("BuyMethod"))
+        costdif.setText(intent.getStringExtra("CostDif"))
+        soldmethod.setText(intent.getStringExtra("SoldMethod"))
+        different.setText(intent.getStringExtra("Different"))
     }
 }
