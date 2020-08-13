@@ -85,6 +85,7 @@ class GoogleMap : FragmentActivity(), OnMapReadyCallback {
         mapFragment!!.getMapAsync(this)
     }
 
+    
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
