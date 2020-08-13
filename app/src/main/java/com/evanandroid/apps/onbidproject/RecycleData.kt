@@ -197,13 +197,7 @@ class RecycleData : AppCompatActivity() {
                     XmlPullParser.START_TAG
                     -> {
                         tag = parser.name
-                        /*if(tag == "items"){
-                            parser.next()
-                            if(parser.text == null){
-                                endpage = -1
 
-                            }
-                        }*/
                         if (tag == "item") {
                         } else if (tag == "PBCT_NO") {
                             parser.next()

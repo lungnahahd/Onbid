@@ -49,6 +49,7 @@ class Holder(itemView: View) : RecyclerView.ViewHolder(itemView){
     var costdif_do : String? = null
     var soldmethod_do : String? = null
     var different_do : String? = null
+    var address : String? = null
 
     init {
         itemView.setOnClickListener {
@@ -70,6 +71,7 @@ class Holder(itemView: View) : RecyclerView.ViewHolder(itemView){
             intent.putExtra("CostDif", costdif_do)
             intent.putExtra("SoldMethod", soldmethod_do)
             intent.putExtra("Different", different_do)
+            intent.putExtra("Address",address)
 
             context.startActivity(intent)
         }
@@ -92,6 +94,7 @@ class Holder(itemView: View) : RecyclerView.ViewHolder(itemView){
         costdif_do = "${data.costDif}"
         soldmethod_do = "${data.soldMethod}"
         different_do = "${data.differnt}"
+        address = "${data.name}"
     }
 
 

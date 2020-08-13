@@ -257,6 +257,14 @@
             android:text="0000"/>
     </LinearLayout>
 
+    <Button
+        android:id="@+id/goMap"
+        android:layout_gravity="right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:text="지도로 이동"
+        android:layout_margin="10sp"/>
 
 
 

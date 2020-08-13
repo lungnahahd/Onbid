@@ -4,12 +4,17 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
+import kotlinx.android.synthetic.main.activity_description.*
+import kotlinx.android.synthetic.main.itemdata.view.*
 import org.w3c.dom.Text
 
 class Description : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_description)
+        var getaddress : String? = null
+        check = 1
+
 
         var title : TextView = findViewById(R.id.titleT_do)
         var num : TextView = findViewById(R.id.numT_do)
@@ -30,6 +35,8 @@ class Description : AppCompatActivity() {
 
         val intent : Intent = getIntent()
 
+        getaddress = intent.getStringExtra("num")
+
         title.setText(intent.getStringExtra("num"))
         num.setText(intent.getStringExtra("name"))
         start.setText(intent.getStringExtra("start"))
@@ -45,5 +52,14 @@ class Description : AppCompatActivity() {
         costdif.setText(intent.getStringExtra("CostDif"))
         soldmethod.setText(intent.getStringExtra("SoldMethod"))
         different.setText(intent.getStringExtra("Different"))
+
+
+
+        goMap.setOnClickListener {
+            val intent = Intent(this, GoogleMap::class.java)
+            intent.putExtra("GoAddress",getaddress)
+            check = -1
+            startActivity(intent)
+        }
     }
 }

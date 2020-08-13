@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">OnbidProject</string>
+    <string name="title_activity_maps__bum">Map</string>
+    <string name="title_activity_googlemap">Map</string>
 </resources>
