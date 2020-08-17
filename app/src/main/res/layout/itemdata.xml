@@ -1,95 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
     android:orientation="vertical"
-    android:padding="16dp">
-    
+    android:layout_weight="4">
+
+    //1
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="3dp">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="공매 번호 : "
+            android:text="공매 번호"
             android:textSize="12sp"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:background="#EE0000"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" : "
             android:textColor="#EE0000"/>
+
         <TextView
             android:id="@+id/num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0000"
             android:textSize="12sp"
-            android:textColor="#EE0000" />
-
-
-
+            android:textColor="#EE0000"
+            android:textStyle="bold"/>
 
     </LinearLayout>
+
+
+    //2
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="3dp">
+
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="입찰 시작 : "
-            android:textSize="10sp"
-            />
+            android:text="입찰 시작"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:background="#DCDCDC"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" : " />
+
         <TextView
             android:id="@+id/startDay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0000"
-            android:textSize="10sp" />
+            android:textSize="12sp"
+            android:textStyle="bold"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
-            android:text="입찰 마감 : "
-            android:textSize="10sp"/>
+            android:layout_marginLeft="80dp"
+            android:text="입찰 마감"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:background="#DCDCDC"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" : " />
+
         <TextView
             android:id="@+id/endDay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="10sp"
-            android:text="0000"/>
+            android:textSize="12sp"
+            android:text="0000"
+            android:textStyle="bold"/>
 
-    </LinearLayout>
+
+        </LinearLayout>
+
+    //3
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="3dp">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:text="사용 용도 : " />
+            android:textSize="12sp"
+            android:text="사용 용도"
+            android:textStyle="bold"
+            android:background="#DCDCDC"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" : " />
+
         <TextView
             android:id="@+id/use"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0000"
-            android:textSize="15sp"/>
+            android:textSize="12sp"
+            android:textStyle="bold"/>
+
     </LinearLayout>
+
+
+    //4
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="3dp">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="공매명 : "
-            android:textSize="20sp" />
+            android:text="공매명"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:background="#000080"
+            android:textColor="#FFFFFF"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" : "
+            android:textColor="#000080"/>
+
         <TextView
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0000"
             android:textStyle="bold"
-            android:textSize="20sp" />
+            android:textSize="15sp"
+            android:textColor="#000080"/>
+
+
     </LinearLayout>
 
     <View
@@ -98,6 +174,6 @@
         android:layout_marginTop="16dp"
         android:background="#e3e3e3" />
 
-    
+
 
 </LinearLayout>

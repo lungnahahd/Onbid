@@ -46,8 +46,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SearchData" />
-        <activity android:name=".MainActivity_Do" />
     </application>
 
 </manifest>

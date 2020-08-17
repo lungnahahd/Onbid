@@ -35,7 +35,7 @@ class Description : AppCompatActivity() {
 
         val intent : Intent = getIntent()
 
-        getaddress = intent.getStringExtra("num")
+        getaddress = intent.getStringExtra("Seller")
 
         title.setText(intent.getStringExtra("num"))
         num.setText(intent.getStringExtra("name"))
@@ -56,10 +56,12 @@ class Description : AppCompatActivity() {
 
 
         goMap.setOnClickListener {
-            val intent = Intent(this, GoogleMap::class.java)
-            intent.putExtra("GoAddress",getaddress)
-            check = -1
-            startActivity(intent)
+            val intent : Intent = getIntent()
+            getaddress = intent.getStringExtra("Seller")
+            val giveintent = Intent(this, GoogleMap::class.java)
+
+            giveintent.putExtra("GoAddress",getaddress)
+            startActivity(giveintent)
         }
     }
 }

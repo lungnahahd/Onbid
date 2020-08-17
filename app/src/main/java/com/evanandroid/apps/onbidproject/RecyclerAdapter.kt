@@ -12,9 +12,7 @@ import androidx.appcompat.view.menu.ActionMenuItemView
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_description.view.*
-import kotlinx.android.synthetic.main.description.view.*
-import kotlinx.android.synthetic.main.description.view.numText
-import kotlinx.android.synthetic.main.description.view.titleText
+
 import kotlinx.android.synthetic.main.itemdata.view.*
 import java.security.AccessController.getContext
 import kotlin.coroutines.coroutineContext
@@ -94,7 +92,7 @@ class Holder(itemView: View) : RecyclerView.ViewHolder(itemView){
         costdif_do = "${data.costDif}"
         soldmethod_do = "${data.soldMethod}"
         different_do = "${data.differnt}"
-        address = "${data.name}"
+        address = "${data.seller}"
     }
 
 

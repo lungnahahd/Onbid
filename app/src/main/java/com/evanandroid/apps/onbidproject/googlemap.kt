@@ -24,64 +24,20 @@ class GoogleMap : FragmentActivity(), OnMapReadyCallback {
     private var geocoder: Geocoder? = null
     private var button: Button? = null
     private var editText: EditText? = null
-   // var check : Int = 1
-
-    /*inner class GetAd{
-        fun getAddress(){
 
 
-            val intent : Intent = getIntent()
-            var str: String = intent!!.getStringExtra("GoAddress")
-            var addressList: List<Address>? = null
-            try {
-                //editText에 입력한 텍스트(주소, 지역, 장소 등)을 지오 코딩을 이용해 변환
-                var addressList = geocoder!!.getFromLocationName(
-                    str,  // 주소
-                    50
-                )
-                // 최대 검색 결과 개수
-            } catch (e: IOException) {
-                e.printStackTrace()
-            }
-            println(addressList!![0].toString())
-            // 콤마를 기준으로 split
-            val splitStr =
-                addressList[0].toString().split(",".toRegex()).toTypedArray()
-            val address = splitStr[0]
-                .substring(splitStr[0].indexOf("\"") + 1, splitStr[0].length - 2) // 주소
-            println(address)
-            val latitude =
-                splitStr[10].substring(splitStr[10].indexOf("=") + 1) // 위도
-            val longitude =
-                splitStr[12].substring(splitStr[12].indexOf("=") + 1) // 경도
-            println(latitude)
-            println(longitude)
 
-            // 좌표(위도, 경도) 생성
-            val point = LatLng(latitude.toDouble(), longitude.toDouble())
-            // 마커 생성
-            val mOptions2 = MarkerOptions()
-            mOptions2.title("search result")
-            mOptions2.snippet(address)
-            mOptions2.position(point)
-            // 마커 추가
-            mMap!!.addMarker(mOptions2)
-            // 해당 좌표로 화면 줌
-            mMap!!.moveCamera(CameraUpdateFactory.newLatLngZoom(point, 15f))
-        }
-    }
-*/
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_googlemap)
         editText = findViewById<View>(R.id.editText) as EditText
         button = findViewById<View>(R.id.button) as Button
+        val intent : Intent = getIntent()
+        var str = intent.getStringExtra("GoAddress")
+        editText!!.setText(str)
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment?
-        /*if(check == -1){
-            GetAd().getAddress()
-        }*/
         mapFragment!!.getMapAsync(this)
     }
 

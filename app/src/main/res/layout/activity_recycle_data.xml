@@ -5,56 +5,70 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".RecycleData">
+    tools:context=".RecycleData"
+    android:background="#F5F5F5">
 
 
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="80dp"
         android:gravity="center"
-        android:text="공매물건 조회 서비스"
+        android:text="공매 물건 조회"
         android:textSize="40sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:background="#000080"
+        android:textColor="	#FFFFFF"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="80dp"
         android:orientation="horizontal"
         android:weightSum="10">
 
         <EditText
             android:id="@+id/edit"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="4"
-            android:hint="공매명" />
+            android:layout_weight="6.8"
+            android:hint="공매명을 입력하세요." />
 
         <Button
             android:id="@+id/button"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="7"
-            android:text="조회하기"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
 
-            android:textSize="12sp" />
+            android:layout_weight="3.2"
+            android:background="@drawable/btn_search"
+            android:text="조회하기"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:weightSum="3">
+        android:layout_height="70dp"
+        android:weightSum="3"
+        android:layout_marginTop="4dp">
 
         <Button
             android:id="@+id/backBut"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="이전으로"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
+            android:background="@drawable/btn_search"
             android:layout_weight="1"/>
 
         <Button
             android:id="@+id/firstBut"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
+            android:background="@drawable/btn_search"
             android:text="처음으로"
             android:layout_weight="1"/>
 
@@ -62,8 +76,11 @@
             android:id="@+id/goBut"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/btn_search"
             android:text="다음으로"
-            android:layout_weight="1"/>
+            android:textColor="#FFFFFF"
+            android:textSize="20dp" />
     </LinearLayout>
 
     <TextView
@@ -71,15 +88,13 @@
         android:layout_height="wrap_content"
         android:text="공매 번호를 잘 확인해 주세요!"
         android:textColor="#EE0000"
-        android:textStyle="italic" />
+        android:textStyle="bold"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollbars="vertical" />
-
-
 
 
 </LinearLayout>
