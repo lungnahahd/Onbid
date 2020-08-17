@@ -68,9 +68,6 @@ class GoogleMap : FragmentActivity(), OnMapReadyCallback {
 
             var str = editText!!.text.toString()
 
-
-
-
             var addressList: List<Address>? = null
             try {
                 //editText에 입력한 텍스트(주소, 지역, 장소 등)을 지오 코딩을 이용해 변환
