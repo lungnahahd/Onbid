@@ -125,7 +125,7 @@
                 android:layout_height="wrap_content"
                 android:background="#DCDCDC"
                 android:text="입찰 기간"
-                android:textSize="15sp" />
+                android:textSize="12sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -137,20 +137,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="000000000000"
-                android:textSize="15sp" />
+                android:textSize="12sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=" ~ "
-                android:textSize="15sp" />
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/endD_do"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="000000000000"
-                android:textSize="15sp" />
+                android:textSize="12sp" />
 
         </LinearLayout>
 
