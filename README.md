@@ -182,14 +182,14 @@ var thread = Thread(WorkerRunnable())
 ```
 ------------
 ## Screen_Shots
-<div>
-<img width="200" src="![KakaoTalk_20200828_232319976_01](https://user-images.githubusercontent.com/67555400/91582657-1200f500-e98b-11ea-8fb8-78e5a92ca1f2.jpg)">
-<img width="200" src="![KakaoTalk_20200828_232319976_02](https://user-images.githubusercontent.com/67555400/91582720-280eb580-e98b-11ea-8b43-1859a91108e2.jpg)">
-</div>
-<div>
-<img width="200" src="![KakaoTalk_20200828_232319976_03](https://user-images.githubusercontent.com/67555400/91582744-3066f080-e98b-11ea-90ee-703fcb434923.jpg)">
-<img width="200" src="![KakaoTalk_20200828_232319976_04](https://user-images.githubusercontent.com/67555400/91582771-3a88ef00-e98b-11ea-8dd8-d4acd0ae22e3.jpg)">
-</div>
+
+![KakaoTalk_20200828_232319976_01](https://user-images.githubusercontent.com/67555400/91582657-1200f500-e98b-11ea-8fb8-78e5a92ca1f2.jpg)
+![KakaoTalk_20200828_232319976_02](https://user-images.githubusercontent.com/67555400/91582720-280eb580-e98b-11ea-8b43-1859a91108e2.jpg)
+
+
+![KakaoTalk_20200828_232319976_03](https://user-images.githubusercontent.com/67555400/91582744-3066f080-e98b-11ea-90ee-703fcb434923.jpg)
+![KakaoTalk_20200828_232319976_04](https://user-images.githubusercontent.com/67555400/91582771-3a88ef00-e98b-11ea-8dd8-d4acd0ae22e3.jpg)
+
 
 
 
