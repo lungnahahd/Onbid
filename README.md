@@ -182,7 +182,7 @@ var thread = Thread(WorkerRunnable())
 ```
 ------------
 ## Screen_Shots
-![KakaoTalk_20200828_232319976](https://user-images.githubusercontent.com/67555400/91581497-77ec7d00-e989-11ea-823f-61920fceb1b0.jpg
+![KakaoTalk_20200828_232319976](https://user-images.githubusercontent.com/67555400/91582391-b7679900-e98a-11ea-9b0f-04e524cc4cb7.jpg)
 
 
 
